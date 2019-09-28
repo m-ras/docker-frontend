@@ -9,6 +9,10 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
+          I edited <code>src/App.js</code>, saved, and reloaded.
+        </p>
+        <p>
+        Docker compose is picking up the changes.
         </p>
         <a
           className="App-link"
