@@ -1,0 +1,9 @@
+sudo: required # Set super user permissions in travis for Docker
+services:
+  - docker
+
+before_install:
+  - docker build -f Dockerfile.dev -t mras/docker-frontend .
+
+script:
+  - docker run -e CI=true mras/docker-frontend npm run test
