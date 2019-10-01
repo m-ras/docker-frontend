@@ -7,3 +7,17 @@ before_install:
 
 script:
   - docker run -e CI=true mras/docker-frontend npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2" # Specify the region of the elasticbeanstalk instance. Get from the AWS url
+  app: "docker-frontend" # First word after All Applications breadcrumb. AWS app name
+  env: "DockerFrontend-env" # The environment after the app breadcump. AWS env name
+  bucket_name: "elasticbeanstalk-us-west-2-883375348892" # Name of the bucket travis copies our build files into. AWS -> S3 -> bucket -> elasticbeanstalk-<region>
+  bucket_path: "docker-frontend" # By default, it's the app name.
+  on:
+    branch: master # Only deploy code when the master branch is changed
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
